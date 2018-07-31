@@ -8,7 +8,9 @@ namespace GQ
         public ProjectSchema(ProjectQuery query, IDependencyResolver  resolver)
         {
             Query = query;            
-            DependencyResolver = resolver;            
+            DependencyResolver = resolver;
+            //this.ResolveType(typeof(VMPriceRepertoryGridAction));
+            //this.RegisterType<ObjectGraphType<VMPriceRepertoryGridAction>>();
         }      
     }
 

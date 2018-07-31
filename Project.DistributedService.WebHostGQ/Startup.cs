@@ -8,7 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GQ;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
-
+using Project.Application.WebHostGQ.FeatureManagment.AutoMapper;
+using System.Collections.Generic;
 
 namespace Project.DistributedService.WebHostGQ
 {
@@ -45,6 +46,9 @@ namespace Project.DistributedService.WebHostGQ
             services.AddSingleton<ProjectSchema>();
             services.AddSingleton<ProjectQuery>();
 
+            //services.AddSingleton<GraphQL.Types.ListGraphType>();
+            //services.AddSingleton<GraphQL.Types.ObjectGraphType<Dictionary<string,string>>>();
+
             #region budgetProjectType
             services.AddSingleton<BudgetProjectType>();
             #endregion
@@ -54,21 +58,28 @@ namespace Project.DistributedService.WebHostGQ
             services.AddSingleton<PostProjectManagementSystemProjectReportPlanContractorsPriceType>();
             services.AddSingleton<PostProjectManagementSystemProjectReportAttachmentsDialogType>();
             services.AddSingleton<PostProjectManagementSystemProjectReportSendToCartableType>();
+
+            services.AddSingleton<ProjectManagementSystemProjectReportTechnicalPropertyItemsType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportApprovedBudgetItemsType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportContractItemsType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportAgendaType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportOptionsItemsType>();
             #endregion
             #region priceRepertoryType
             services.AddSingleton<BasePriceRepertoryType>();
             services.AddSingleton<PriceRepertoryType>();
             services.AddSingleton<PriceRepertoryFinancialYearsType>();
+            services.AddSingleton<BasePriceRepertoryPriceType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportType>();            
             #endregion
 
-
+            services.AddAutoMapper();
 
             services.AddSingleton<IEventAggregator, SimpleEventAggregator>();
             services.AddSingleton<IDependencyResolver>(c => new FuncDependencyResolver(type => c.GetRequiredService(type)));
 
             services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
-
-            //services.AddAutoMapper();
+          
             //services.AddNikGraphQL();
 
             services.AddGraphQLHttp();
@@ -77,6 +88,8 @@ namespace Project.DistributedService.WebHostGQ
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("localhost"));               
             });
+
+     
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,11 +102,11 @@ namespace Project.DistributedService.WebHostGQ
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-                    
+ 
             app.UseWebSockets();
             app.UseGraphQLWebSocket<ProjectSchema>(new GraphQLWebSocketsOptions());
             app.UseGraphQLHttp<ProjectSchema>(new GraphQLHttpOptions());            
-            app.UseMvc();
+            //app.UseMvc();
         }
     }
 }

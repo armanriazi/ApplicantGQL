@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -85,12 +86,11 @@ namespace GQ
     }
 
     public class PriceRepertoryGridAction{
-        public PriceRepertoryGridAction(){ }
-
+        public PriceRepertoryGridAction(){ }       
         /// <summary>
         /// <Description>شناسه فهرست بهاء</Description>
         /// </summary>
-        public string TBL_BprHasChildren { get; set; }
+        public bool TBL_BprHasChildren { get; set; }
         /// <summary>
         /// <Description>شناسه فهرست بهاء</Description>
         /// </summary>
@@ -114,4 +114,73 @@ namespace GQ
         ///// </summary>
         //public string TBL_BprNote { get; set; }
     }
-}
+
+
+    public class BasePriceRepertoryPriceTextFieldAction
+    {
+        public BasePriceRepertoryPriceTextFieldAction(){}
+
+             public string TBL_BprID { get; set; }
+             public string  TBL_BprParentID_fk      { get; set; }
+             public string  TBL_PrcID_fk                   { get; set; }
+             public string  WHS_GuID_fk                    { get; set; }
+             public string  CNT_CbID_fk                    { get; set; }
+             public string  TBL_BprCode                    { get; set; }
+             public string  TBL_BprOldCode                 { get; set; }
+             public string  TBL_BprDescription             { get; set; }
+             public string  TBL_BprWarehouseCoding         { get; set; }
+             public string  TBL_BprTransportCoefficient     { get; set; } 
+             public string  TBL_BprMaterialPrice            { get; set; }
+             public string  TBL_BprPayPrice                 { get; set; }
+             public string  TBL_BprMachineryPrice           { get; set; }
+             public string  TBL_BprDeparePrice1             { get; set; }
+             public string  TBL_BprDeparePrice2             { get; set; }
+             public string TBL_BprDeparePrice3              { get; set; }
+             public string TBL_BprMachineryDeparePrice      { get; set; }
+             public string TBL_BprPayDeparePrice            { get; set; }
+             public string TBL_BprDisposePrice              { get; set; }
+             public string TBL_BprMachineryMovePrice        { get; set; }
+             public string TBL_BprPayMovePrice              { get; set; }
+             public string TBL_BprPrice                     { get; set; }
+             public string TBL_BprQuantity                  { get; set; }
+             public string TBL_BprNote                      { get; set; }
+             public string TBL_BprType                      { get; set; }
+             public string TBL_BprActive                    { get; set; }
+             public string   TBL_BprStatus                  { get; set; }
+             public string   TBL_BprRegisterDate            { get; set; }
+             public string   TBL_BprDeleteDate              { get; set; }
+             public string   ACC_FinancialYearID            { get; set; }
+             public string TBL_UserID                      { get; set; }
+    }
+
+
+public class ProjectManagementSystemProjectReportGridAction
+    {
+        public ProjectManagementSystemProjectReportGridAction(){ }
+        public string TBL_BprhID { get; set; }
+        public string TBL_BprID_fk { get; set; }
+        public string TBL_BprhExecuteDate { get; set; }
+        public string TBL_BprhExpireDate { get; set; }
+        public string TBL_BprhMaterialPrice { get; set; }
+        public string TBL_BprhPayPrice { get; set; }
+        public string TBL_BprhMachineryPrice { get; set; }
+        public string TBL_BprhDeparePrice1 { get; set; }
+        public string TBL_BprhDeparePrice2 { get; set; }
+        public string TBL_BprhDeparePrice3 { get; set; }
+        public string TBL_BprhMachineryDeparePrice { get; set; }
+        public string TBL_BprhPayDeparePrice { get; set; }
+        public string TBL_BprhDisposePrice { get; set; }
+        public string TBL_BprhMachineyMovePrice { get; set; }
+        public string TBL_BprhPayMovePrice { get; set; }
+        public string TBL_BprhNote { get; set; }
+        public string TBL_BprhType { get; set; }
+        public string TBL_BprhActive { get; set; }
+        public string TBL_BprhStatus { get; set; }
+        public string TBL_BprhRegisterDate { get; set; }
+        public string TBL_BprhDeleteDate { get; set; }
+        public string ACC_FinancialYearID { get; set; }
+        public string TBL_UserID { get; set; }
+    }
+ }
+
+  

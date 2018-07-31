@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GQ\GQ.csproj" />
+    <ProjectReference Include="..\Project.Application.WebHostGQ\Project.Application.WebHostGQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>

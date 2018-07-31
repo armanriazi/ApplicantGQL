@@ -24,6 +24,7 @@ namespace GQ
                      }
                );
             #endregion
+
             #region projectManagementSystemProjectReportPlanItemsService
             Field<ListGraphType<ProjectManagementSystemProjectReportPlanItemsType>>(
                  "ProjectManagementSystemProjectReportPlanItemsByProjectId",
@@ -74,6 +75,80 @@ namespace GQ
 
                      resolve: context => projectManagementSystemProjectReportPlanItemsService.PostProjectManagementSystemProjectReportSendToCartableByParamsAsync(context.GetArgument<string>("budProjectId"), context.GetArgument<string>("nationalCode"), context.GetArgument<string>("trackingCode"), context.GetArgument<string>("accFinancialYearID"))
            );
+
+            Field<ListGraphType<ProjectManagementSystemProjectReportTechnicalPropertyItemsType>>(
+                 "ProjectManagementSystemProjectReportTechnicalPropertyItemsByParams",
+                 Description = "This field returns the technical property items of the params",
+                 arguments: new QueryArguments(
+                            new QueryArgument<StringGraphType> { Name = "budgetProjectId" },
+                            new QueryArgument<StringGraphType> { Name = "orderby" },
+                            new QueryArgument<StringGraphType> { Name = "userId" },
+                            new QueryArgument<StringGraphType> { Name = "accFinancialYearId" },
+                            new QueryArgument<StringGraphType> { Name = "desc" }
+                 ),
+
+                  resolve: context => projectManagementSystemProjectReportPlanItemsService.ProjectManagementSystemProjectReportTechnicalPropertyItemsByParamsAsync(context.GetArgument<string>("budgetProjectId"), context.GetArgument<string>("orderby"), context.GetArgument<string>("userId"), context.GetArgument<string>("accFinancialYearId"), context.GetArgument<string>("desc"))
+           );
+
+            Field<ListGraphType<ProjectManagementSystemProjectReportApprovedBudgetItemsType>>(
+                 "ProjectManagementSystemProjectReportApprovedBudgetItemsByParams",
+                 Description = "This field returns the approved budget of the params",
+                 arguments: new QueryArguments(
+                            new QueryArgument<StringGraphType> { Name = "budgetProjectId" },
+                            new QueryArgument<StringGraphType> { Name = "orderby" },
+                            new QueryArgument<StringGraphType> { Name = "userId" },
+                            new QueryArgument<StringGraphType> { Name = "accFinancialYearId" },
+                            new QueryArgument<StringGraphType> { Name = "desc" }
+                 ),
+
+                  resolve: context => projectManagementSystemProjectReportPlanItemsService.ProjectManagementSystemProjectReportApprovedBudgetItemsByParamsAsync(context.GetArgument<string>("budgetProjectId"), context.GetArgument<string>("orderby"), context.GetArgument<string>("userId"), context.GetArgument<string>("accFinancialYearId"), context.GetArgument<string>("desc"))
+           );
+
+            Field<ListGraphType<ProjectManagementSystemProjectReportContractItemsType>>(
+            "ProjectManagementSystemProjectReportContractItemsByParams",
+            Description = "This field returns the contract of the params",
+            arguments: new QueryArguments(
+                       new QueryArgument<StringGraphType> { Name = "budgetProjectId" },
+                       new QueryArgument<StringGraphType> { Name = "orderby" },
+                       new QueryArgument<StringGraphType> { Name = "userId" },
+                       new QueryArgument<StringGraphType> { Name = "accFinancialYearId" },
+                       new QueryArgument<StringGraphType> { Name = "desc" }
+            ),
+
+                 resolve: context => projectManagementSystemProjectReportPlanItemsService.ProjectManagementSystemProjectReportContractItemsByParamsAsync(context.GetArgument<string>("budgetProjectId"), context.GetArgument<string>("orderby"), context.GetArgument<string>("userId"), context.GetArgument<string>("accFinancialYearId"), context.GetArgument<string>("desc"))
+           );
+
+
+            Field<ListGraphType<ProjectManagementSystemProjectReportAgendaType>>(
+           "ProjectManagementSystemProjectReportAgendaByParams",
+           Description = "This field returns the agenda items of the params",
+           arguments: new QueryArguments(
+                      new QueryArgument<StringGraphType> { Name = "budgetProjectId" },
+                      new QueryArgument<StringGraphType> { Name = "orderby" },
+                      new QueryArgument<StringGraphType> { Name = "userId" },
+                      new QueryArgument<StringGraphType> { Name = "accFinancialYearId" },
+                      new QueryArgument<StringGraphType> { Name = "desc" }
+           ),
+
+                resolve: context => projectManagementSystemProjectReportPlanItemsService.ProjectManagementSystemProjectReportAgendaByParamsAsync(context.GetArgument<string>("budgetProjectId"), context.GetArgument<string>("orderby"), context.GetArgument<string>("userId"), context.GetArgument<string>("accFinancialYearId"), context.GetArgument<string>("desc"))
+          );
+
+
+            Field<ListGraphType<ProjectManagementSystemProjectReportOptionsItemsType>>(
+            "ProjectManagementSystemProjectReportOptionsItemsByParams",
+            Description = "This field returns the report option of the params",
+            arguments: new QueryArguments(
+                       new QueryArgument<StringGraphType> { Name = "budgetProjectId" },
+                       new QueryArgument<StringGraphType> { Name = "orderby" },
+                       new QueryArgument<StringGraphType> { Name = "userId" },
+                       new QueryArgument<StringGraphType> { Name = "accFinancialYearId" },
+                       new QueryArgument<StringGraphType> { Name = "desc" }
+            ),
+
+                 resolve: context => projectManagementSystemProjectReportPlanItemsService.ProjectManagementSystemProjectReportOptionsItemsByParamsAsync(context.GetArgument<string>("budgetProjectId"), context.GetArgument<string>("orderby"), context.GetArgument<string>("userId"), context.GetArgument<string>("accFinancialYearId"), context.GetArgument<string>("desc"))
+           );
+
+    
             #endregion
             #region priceRepertoryService
             Field<ListGraphType<PriceRepertoryType>>(
@@ -106,6 +181,29 @@ namespace GQ
 
                        resolve: context => priceRepertoryService.BasePriceRepertorySelectListActionByQueryAsync(context.GetArgument<string>("qparam"))
              );
+
+            Field<ListGraphType<BasePriceRepertoryPriceType>>(
+                   "BasePriceRepertoryPriceTextFieldActionByQuery",
+                   Description = "This field returns the basepricerepertoryprice of the submitted the query",
+                   arguments: new QueryArguments(
+                              new QueryArgument<StringGraphType> { Name = "tblBprId" }
+                   ),
+
+                       resolve: context => priceRepertoryService.BasePriceRepertoryPriceTextFieldActionByQueryAsync(context.GetArgument<string>("tblBprId"))
+             );
+            Field<ListGraphType<ProjectManagementSystemProjectReportType>>(
+                "ProjectManagementSystemProjectReportGridActionByParams",
+                Description = "This field returns the projectmanagementsystemprojectreport of the submitted the params",
+                arguments: new QueryArguments(
+                           new QueryArgument<StringGraphType> { Name = "accFinancialYearID" },
+                           new QueryArgument<StringGraphType> { Name = "tblBprID" },
+                           new QueryArgument<StringGraphType> { Name = "sortExpression" },
+                           new QueryArgument<StringGraphType> { Name = "orderBy" }                        
+                ),
+
+                    resolve: context => priceRepertoryService.ProjectManagementSystemProjectReportGridActionByParamsAsync(context.GetArgument<string>("accFinancialYearID"), context.GetArgument<string>("tblBprID"), context.GetArgument<string>("sortExpression"), context.GetArgument<string>("orderBy"))
+          );
+          
             #endregion
         }
     }
