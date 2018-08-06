@@ -11,4 +11,15 @@ namespace GQ
         }
        
     }
+    public class BudgetProjectPlanIdentityType : ObjectGraphType<BudgetProjectPlanIdentity>
+    {
+        public BudgetProjectPlanIdentityType()
+        {
+            Field(c => c.BUD_ProjectCode, nullable: true).Description("BUD_ProjectCode");
+            Field(c => c.BUD_ProjectApproveDate, nullable: true).Description("BUD_ProjectApproveDate");
+            Field(c => c.BUD_ProjectName, nullable: true).Description("BUD_ProjectName");
+            Field(c => c.BUD_ProjectAddress, nullable: true).Description("BUD_ProjectAddress");
+        }
+
+    }
 }

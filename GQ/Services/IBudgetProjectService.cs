@@ -9,6 +9,8 @@ namespace GQ
     {
 
         Task<IEnumerable<BudgetProject>> BudgetByCodeMeliAsync(string codeMeli);
+        Task<IEnumerable<BudgetProjectPlanIdentity>> BudgetProjectPlanByBudgetProjectIdAsync(string qparam);
+
 
     }
 }

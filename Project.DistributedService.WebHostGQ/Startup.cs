@@ -51,6 +51,7 @@ namespace Project.DistributedService.WebHostGQ
 
             #region budgetProjectType
             services.AddSingleton<BudgetProjectType>();
+            services.AddSingleton<BudgetProjectPlanIdentityType>();
             #endregion
             #region projectManagementSystemProjectReportType
             services.AddSingleton<ProjectManagementSystemProjectReportPlanItemsType>();
@@ -64,6 +65,11 @@ namespace Project.DistributedService.WebHostGQ
             services.AddSingleton<ProjectManagementSystemProjectReportContractItemsType>();
             services.AddSingleton<ProjectManagementSystemProjectReportAgendaType>();
             services.AddSingleton<ProjectManagementSystemProjectReportOptionsItemsType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportExecutionAgentsType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportSupervistoryHistoryType>();
+            services.AddSingleton<ProjectManagementSystemProjectReportPhysicalExtendType>();
+
+            services.AddSingleton<ProjectManagementSystemReportPriceContextTableViewType>();
             #endregion
             #region priceRepertoryType
             services.AddSingleton<BasePriceRepertoryType>();

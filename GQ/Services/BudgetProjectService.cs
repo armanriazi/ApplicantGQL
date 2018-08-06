@@ -24,7 +24,7 @@ namespace GQ
                 new {codeMeli = codemeli}),
                 UnicodeEncoding.UTF8, "application/json");
                 
-            HttpResponseMessage Res = await _client.PostAsync("api/BudgetProject", stringContent);
+            HttpResponseMessage Res = await _client.PostAsync("api/BudgetProject/Login", stringContent);
 
                 
             if (Res.IsSuccessStatusCode)
@@ -38,6 +38,28 @@ namespace GQ
             return returnInfo;
         }
 
-       
+
+        public async Task<IEnumerable<BudgetProjectPlanIdentity>> BudgetProjectPlanByBudgetProjectIdAsync(string qparam)
+        {
+            var returnInfo = new List<BudgetProjectPlanIdentity>();
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(qparam),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/BudgetProject/PostBudgetProjectPlanTextFieldsAction", stringContent);
+
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                returnInfo = JsonConvert.DeserializeObject<List<BudgetProjectPlanIdentity>>(EmpResponse);
+
+            }
+
+            return returnInfo;
+        }
+
+
     }
 }

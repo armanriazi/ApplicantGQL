@@ -14,22 +14,23 @@ namespace GQ
     public class ProjectManagementSystemProjectReportPlanItemsService: IProjectManagementSystemProjectReportPlanItemsService
     {              
         private readonly HttpClient _client;
-
-        public ProjectManagementSystemProjectReportPlanItemsService(IHttpClientFactory client)
+        private readonly IMapper _mapper;
+        public ProjectManagementSystemProjectReportPlanItemsService(IHttpClientFactory client,IMapper mapper)
         {
 
-            _client = client.Create();            
+            _client = client.Create();
+            _mapper = mapper;
         }
 
 
 
-        public async Task<IEnumerable<ProjectManagementSystemProjectReportPlanItems>> ProjectManagementSystemProjectReportPlanItemsByProjectIdAsync(string projectId, string orderBy)
+        public async Task<IEnumerable<ProjectManagementSystemProjectReportPlanItems>> ProjectManagementSystemProjectReportPlanItemsByProjectIdAsync(string budgetProjectId, string orderBy, string userId, string accFinancialYearId, string desc)
         {
             var returnInfo = new List<ProjectManagementSystemProjectReportPlanItems>();            
 
           
                 var stringContent = new StringContent(JsonConvert.SerializeObject(
-                    new { BudgetProjectId_Fk = projectId,OrderBy = orderBy}),
+                new { BudgetProjectId = budgetProjectId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
                     UnicodeEncoding.UTF8, "application/json");
 
                 HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectReportPlanItemsGridAction", stringContent);
@@ -65,15 +66,16 @@ namespace GQ
             return returnInfo;
         }
 
-        public async Task<IEnumerable<PostProjectManagementSystemProjectReportPlanContractorsPrice>> ProjectManagementSystemProjectReportPlanContractorsPriceByBudgetProjectIdAsync(string budgetProjectId)
+        public async Task<IEnumerable<PostProjectManagementSystemProjectReportPlanContractorsPrice>> ProjectManagementSystemProjectReportPlanContractorsPriceByBudgetProjectIdAsync(string budgetProjectId, string orderBy, string userId, string accFinancialYearId, string desc)
         {
             var returnInfo = new List<PostProjectManagementSystemProjectReportPlanContractorsPrice>();
 
 
-            var stringContent = new StringContent(JsonConvert.SerializeObject(budgetProjectId),
-                UnicodeEncoding.UTF8, "application/json");
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                            new { BudgetProjectId = budgetProjectId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
+                            UnicodeEncoding.UTF8, "application/json");
 
-            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectReportContractItemsGridAction", stringContent);
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectReportPlanContractorsPriceGridAction", stringContent);
 
             if (Res.IsSuccessStatusCode)
             {
@@ -235,6 +237,95 @@ namespace GQ
 
                 var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                 returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemProjectReportAgendaItems>>(EmpResponse);
+
+            }
+
+            return returnInfo;
+        }
+        public async Task<IEnumerable<PostProjectManagementSystemProjectExecutionAgents>> ProjectManagementSystemProjectExecutionAgentsByParamsAsync(string budgetProjectId, string orderBy, string userId, string accFinancialYearId, string desc)
+        {
+            var returnInfo = new List<PostProjectManagementSystemProjectExecutionAgents>();
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { BudgetProjectId = budgetProjectId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectExecutionAgentsGridAction", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemProjectExecutionAgents>>(EmpResponse);
+
+            }
+
+            return returnInfo;
+        }
+
+        public async Task<IEnumerable<PostProjectManagementSystemProjectSupervistoryHistory>> ProjectManagementSystemProjectSupervistoryHistoryByParamsAsync(string budgetProjectId, string orderBy, string userId, string accFinancialYearId, string desc)
+        {
+            var returnInfo = new List<PostProjectManagementSystemProjectSupervistoryHistory>();
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { BudgetProjectId = budgetProjectId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectSupervistoryHistoryGridAction", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemProjectSupervistoryHistory>>(EmpResponse);
+
+            }
+
+            return returnInfo;
+        }
+
+        public async Task<IEnumerable<VMProjectManagementSystemProjectPhysicalExtend>> ProjectManagementSystemProjectPhysicalExtendByParamsAsync(string budgetProjectId, string orderBy, string userId, string accFinancialYearId, string desc)
+        {
+            var returnInfo = new List<PostProjectManagementSystemProjectPhysicalExtend>();
+            var returnOutInfo = new List<VMProjectManagementSystemProjectPhysicalExtend>();
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { BudgetProjectId = budgetProjectId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectPhysicalExtendGridAction", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+                returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemProjectPhysicalExtend>>(EmpResponse);               
+                returnOutInfo = _mapper.Map<List<VMProjectManagementSystemProjectPhysicalExtend>>(returnInfo);
+            }
+
+            return returnOutInfo;
+        }
+
+        public async Task<IEnumerable<PostProjectManagementSystemReportPriceContextTableView>> ProjectManagementSystemReportPriceContextTableViewByParamsAsync(string tblPrcId, string orderBy, string userId, string accFinancialYearId, string desc)
+        {
+            var returnInfo = new List<PostProjectManagementSystemReportPriceContextTableView>();
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { TBL_PrcID_fk = tblPrcId, OrderBy = orderBy, UserId = userId, AccFinancialYearId = accFinancialYearId, Desc = desc }),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemReportPriceContextTableViewGridAction", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemReportPriceContextTableView>>(EmpResponse);
 
             }
 
