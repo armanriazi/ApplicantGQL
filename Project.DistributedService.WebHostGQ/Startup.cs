@@ -58,8 +58,9 @@ namespace Project.DistributedService.WebHostGQ
             services.AddSingleton<PostProjectManagementSystemProjectReportPlanDocumentsType>();
             services.AddSingleton<PostProjectManagementSystemProjectReportPlanContractorsPriceType>();
             services.AddSingleton<PostProjectManagementSystemProjectReportAttachmentsDialogType>();
+            services.AddSingleton<PostProjectManagementSystemProjectReportFileDownloadType>();            
             services.AddSingleton<PostProjectManagementSystemProjectReportSendToCartableType>();
-
+            services.AddSingleton<PostProjectManagementSystemProjectReportSetWinnerType>();
             services.AddSingleton<ProjectManagementSystemProjectReportTechnicalPropertyItemsType>();
             services.AddSingleton<ProjectManagementSystemProjectReportApprovedBudgetItemsType>();
             services.AddSingleton<ProjectManagementSystemProjectReportContractItemsType>();

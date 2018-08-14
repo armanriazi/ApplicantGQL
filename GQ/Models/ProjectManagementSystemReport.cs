@@ -200,27 +200,56 @@ namespace GQ
         /// <Description>نوع فایل</Description>
         /// </summary>
         public string DocumentFileType { get; set; }
-        /// <summary>
-        /// <Description>نام فایل</Description>
-        /// </summary>
-        public string TBL_OdName { get; set; }
+        ///// <summary>
+        ///// <Description>نام فایل</Description>
+        ///// </summary>
+        //public string TBL_OdName { get; set; }
         /// <summary>
         /// <Descriptionپسوند فایل></Description>
         /// </summary>
         //public string DocumentFileTypeExtention { get; set; }
         /// <summary>
-        /// <Description>کد نوع فایل</Description>
-        /// </summary>
-        //public string FileTypeId { get; set; }
+        // <Description>کد نوع فایل</Description>
+        // </summary>
+        public string FileTypeId { get; set; }
         /// <summary>
         /// <Description>شرح مستند</Description>
         /// </summary>
         public string DocumentNote { get; set; }
     }
 
+    public class PostProjectManagementSystemProjectReportFileDownload
+    {
+        public PostProjectManagementSystemProjectReportFileDownload() { }
+        /// <summary>
+        /// <Description>Image فایل</Description>
+        /// </summary>
+        public string TBL_IdBody { get; set; }
+        /// <summary>
+        /// <Description>Office فایل</Description>
+        /// </summary>
+        public string TBL_OdBody { get; set; }
+        /// <summary>
+        /// <Description> PDF فایل</Description>
+        /// </summary>
+
+        public string TBL_ApdBody { get; set; }
+
+
+    }
+
     public class PostProjectManagementSystemProjectReportSendToCartable
     {
         public PostProjectManagementSystemProjectReportSendToCartable() { }
+        /// <summary>
+        /// <Description>پیام</Description>
+        /// </summary>
+        public string OutputMessage { get; set; }
+    }
+
+    public class PostProjectManagementSystemProjectReportSetWinner
+    {
+        public PostProjectManagementSystemProjectReportSetWinner() { }
         /// <summary>
         /// <Description>پیام</Description>
         /// </summary>

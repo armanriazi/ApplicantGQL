@@ -108,6 +108,27 @@ namespace GQ
 
             return returnInfo;
         }
+        public async Task<IEnumerable<PostProjectManagementSystemProjectReportFileDownload>> PostProjectManagementSystemProjectReportFileDownloadAsync(string fileTypeId, string tblIdID)
+        {
+            var returnInfo = new List<PostProjectManagementSystemProjectReportFileDownload>();
+
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { FileTypeId = fileTypeId,TblIdID = tblIdID}),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectReportFileDownload", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                returnInfo = JsonConvert.DeserializeObject<List<PostProjectManagementSystemProjectReportFileDownload>>(EmpResponse);
+
+            }
+
+            return returnInfo;
+        }
 
         public async Task<IEnumerable<PostProjectManagementSystemProjectReportSendToCartable>> PostProjectManagementSystemProjectReportSendToCartableByParamsAsync(string budProjectId, string nationalCode, string trackingCode, string accFinancialYearId)
         {
@@ -130,6 +151,25 @@ namespace GQ
             return returnInfo;
         }
 
+        public async Task<IEnumerable<PostProjectManagementSystemProjectReportSetWinner>> PostProjectManagementSystemProjectReportSetWinnerByParamsAsync(string pmsPppId, string budProjectId, string nationoanlCode, string trackingCode, string budPepRegisterDate, string aCCFinancialYearId, string tblUserId)
+        {
+            var returnInfo = new List<PostProjectManagementSystemProjectReportSetWinner>();
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(
+                new { PmsPppId = pmsPppId, BudProjectId = budProjectId, NationoanlCode = nationoanlCode, TrackingCode = trackingCode, BudPepRegisterDate= budPepRegisterDate, ACCFinancialYearId= aCCFinancialYearId, TblUserId= tblUserId }),
+                UnicodeEncoding.UTF8, "application/json");
+
+            HttpResponseMessage Res = await _client.PostAsync("api/ProjectManagementSystemProjectReport/PostProjectManagementSystemProjectReportSetWinner", stringContent);
+
+            if (Res.IsSuccessStatusCode)
+            {
+                var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                var x = new PostProjectManagementSystemProjectReportSetWinner();
+                x.OutputMessage = EmpResponse;
+                returnInfo.Add(x);                
+            }
+            return returnInfo;
+        }
 
         public async Task<IEnumerable<PostProjectManagementSystemProjectReportTechnicalPropertyItems>> ProjectManagementSystemProjectReportTechnicalPropertyItemsByParamsAsync(string budgetProjectId, string orderBy,string userId ,string accFinancialYearId, string desc)
         {

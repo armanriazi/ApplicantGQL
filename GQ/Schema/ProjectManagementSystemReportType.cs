@@ -5,6 +5,7 @@ using System.Text;
 
 namespace GQ
 {
+
     public class ProjectManagementSystemProjectReportPlanItemsType : ObjectGraphType<ProjectManagementSystemProjectReportPlanItems>
     {
         public ProjectManagementSystemProjectReportPlanItemsType()
@@ -93,8 +94,20 @@ namespace GQ
             Field(c => c.DocumentFileType, nullable: true).Description("DocumentFileType");
             Field(c => c.DocumentName, nullable: true).Description("DocumentName");
             Field(c => c.DocumentNote, nullable: true).Description("DocumentNote");
-            Field(c => c.TBL_OdName, nullable: true).Description("TBL_OdName");
+            Field(c => c.FileTypeId, nullable: true).Description("FileTypeId");
+            //Field(c => c.TBL_OdName, nullable: true).Description("TBL_OdName");
 
+        }
+
+    }
+
+    public class PostProjectManagementSystemProjectReportFileDownloadType : ObjectGraphType<PostProjectManagementSystemProjectReportFileDownload>
+    {
+        public PostProjectManagementSystemProjectReportFileDownloadType()
+        {
+            Field(c => c.TBL_IdBody, nullable: true).Description("TBL_IdBody");
+            Field(c => c.TBL_ApdBody, nullable: true).Description("TBL_ApdBody");
+            Field(c => c.TBL_OdBody, nullable: true).Description("TBL_OdBody");
         }
 
     }
@@ -106,6 +119,14 @@ namespace GQ
             Field(c => c.OutputMessage, nullable: true).Description("OutputMessage");
         }
 
+    }
+
+    public class PostProjectManagementSystemProjectReportSetWinnerType : ObjectGraphType<PostProjectManagementSystemProjectReportSetWinner>
+    {
+        public PostProjectManagementSystemProjectReportSetWinnerType()
+        {
+            Field(c => c.OutputMessage, nullable: true).Description("OutputMessage");
+        }
     }
 
     public class ProjectManagementSystemProjectReportTechnicalPropertyItemsType : ObjectGraphType<PostProjectManagementSystemProjectReportTechnicalPropertyItems>

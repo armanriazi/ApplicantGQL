@@ -86,6 +86,16 @@ namespace GQ
                        resolve: context => projectManagementSystemProjectReportPlanItemsService.PostProjectManagementSystemProjectReportAttachmentsDialogByDocumentCodeAsync(context.GetArgument<string>("documentCode"))
              );
 
+            Field<ListGraphType<PostProjectManagementSystemProjectReportFileDownloadType>>(
+                   "ProjectManagementSystemProjectReportFileDownload",
+                   Description = "This field returns the files attachment of the params",
+                   arguments: new QueryArguments(
+                              new QueryArgument<StringGraphType> { Name = "fileTypeId" },
+                              new QueryArgument<StringGraphType> { Name = "tblIdID" }
+                   ),                   
+                       resolve: context => projectManagementSystemProjectReportPlanItemsService.PostProjectManagementSystemProjectReportFileDownloadAsync(context.GetArgument<string>("fileTypeId"), context.GetArgument<string>("tblIdID"))                       
+             );
+
             Field<ListGraphType<PostProjectManagementSystemProjectReportSendToCartableType>>(
                  "ProjectManagementSystemProjectReportSendToCartableByParams",
                  Description = "This field returns the mesage contractors attachment of the send to cartable",
@@ -98,6 +108,22 @@ namespace GQ
 
                      resolve: context => projectManagementSystemProjectReportPlanItemsService.PostProjectManagementSystemProjectReportSendToCartableByParamsAsync(context.GetArgument<string>("budProjectId"), context.GetArgument<string>("nationalCode"), context.GetArgument<string>("trackingCode"), context.GetArgument<string>("accFinancialYearID"))
            );
+
+            Field<ListGraphType<PostProjectManagementSystemProjectReportSetWinnerType>>(
+              "ProjectManagementSystemProjectReportSetWinnerByParams",
+              Description = "This field returns the mesage contractors customer of the set winner",
+              arguments: new QueryArguments(
+                     new QueryArgument<StringGraphType> { Name = "pmsPppId" },
+                     new QueryArgument<StringGraphType> { Name = "budProjectId" },
+                     new QueryArgument<StringGraphType> { Name = "nationoanlCode" },
+                     new QueryArgument<StringGraphType> { Name = "trackingCode" },
+                     new QueryArgument<StringGraphType> { Name = "budPepRegisterDate" },
+                     new QueryArgument<StringGraphType> { Name = "aCCFinancialYearId" },
+                     new QueryArgument<StringGraphType> { Name = "tblUserId" }
+                  ),
+
+              resolve: context => projectManagementSystemProjectReportPlanItemsService.PostProjectManagementSystemProjectReportSetWinnerByParamsAsync(context.GetArgument<string>("pmsPppId"), context.GetArgument<string>("budProjectId"), context.GetArgument<string>("nationoanlCode"),context.GetArgument<string>("trackingCode"), context.GetArgument<string>("budPepRegisterDate"), context.GetArgument<string>("aCCFinancialYearId"), context.GetArgument<string>("tblUserId"))
+             );
 
             Field<ListGraphType<ProjectManagementSystemProjectReportTechnicalPropertyItemsType>>(
                  "ProjectManagementSystemProjectReportTechnicalPropertyItemsByParams",
