@@ -13,7 +13,7 @@ namespace GQ
 
         public HttpClient Create()
         {
-            string endpoint = "http://localhost:5589";
+            string endpoint = "http://172.18.4.19:8080/";
             HttpClient client = null;
 
             if (cache.TryGetValue(endpoint, out client))
@@ -39,7 +39,7 @@ namespace GQ
         //{    
         //    var nodes = new Uri[]
         //       {
-        //        new Uri("http://localhost:5589")                
+        //        new Uri("http://172.18.4.19:8080/")                
         //       };
 
         //    var pool = new StaticConnectionPool(nodes);
